@@ -1,0 +1,19 @@
+parsely_tool/
+├── parsely_tool/
+│   ├── __init__.py
+│   ├── parsers.py
+│   ├── storage.py
+│   ├── query.py
+│   ├── utils.py
+│   └── config.py
+├── examples/
+│   ├── example_usage.py
+│   └── demo_app.py
+│   └── enabl_feature1.py
+├── tests/
+│   ├── test_parsers.py
+│   ├── test_storage.py
+│   └── test_query.py
+├── requirements.txt
+├── README.md
+└── setup.py

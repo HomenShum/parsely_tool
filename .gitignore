@@ -1,0 +1,8 @@
+*.env
+parsely_tool/.env
+parsely_tool/assets
+./bge_m3_onnx
+./bge_onnx
+bge_m3_onnx/
+bge_onnx/
+assets/

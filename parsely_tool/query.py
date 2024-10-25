@@ -18,7 +18,9 @@ from .utils import Utils
 from typing import Any, Type
 from pydantic import BaseModel
 from openai import OpenAI as OpenAI_original
-from llama_index.embeddings.huggingface_optimum import OptimumEmbedding
+# from llama_index.embeddings.huggingface_optimum import OptimumEmbedding
+from llama_index.embeddings.fastembed import FastEmbedEmbedding
+
 
 class QueryEngine:
     def __init__(self, config, collection_name=None):
@@ -46,13 +48,15 @@ class QueryEngine:
         #     )
         # else:
         #     self.embed_model = OpenAIEmbedding(api_key=config.openai_api_key)
-        if not os.path.exists("./bge_m3_onnx"):
-            OptimumEmbedding.create_and_save_optimum_model(
-                # "BAAI/bge-small-en-v1.5", "./bge_onnx"
-                "BAAI/bge-m3", "./bge_m3_onnx"
-            )
+        # if not os.path.exists("./bge_m3_onnx"):
+        #     OptimumEmbedding.create_and_save_optimum_model(
+        #         # "BAAI/bge-small-en-v1.5", "./bge_onnx"
+        #         "BAAI/bge-m3", "./bge_m3_onnx"
+        #     )
 
-        self.embed_model = OptimumEmbedding(folder_name="./bge_m3_onnx")
+        # self.embed_model = OptimumEmbedding(folder_name="./bge_m3_onnx")
+        self.embed_model = FastEmbedEmbedding(model_name="BAAI/bge-large-en-v1.5")
+
 
         # if config.use_azure_openai:
         #     self.llm_client = AzureOpenAI(

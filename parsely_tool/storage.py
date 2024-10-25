@@ -7,6 +7,8 @@ from llama_index.vector_stores.qdrant import QdrantVectorStore
 from llama_index.core import VectorStoreIndex, StorageContext
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.embeddings.azure_openai import AzureOpenAIEmbedding
+# from llama_index.embeddings.huggingface_optimum import OptimumEmbedding
+from llama_index.embeddings.fastembed import FastEmbedEmbedding
 from .utils import Utils
 
 class Storage:
@@ -36,13 +38,15 @@ class Storage:
         # else:
         #     self.embed_model = OpenAIEmbedding(api_key=config.openai_api_key)
 
-        if not os.path.exists("./bge_m3_onnx"):
-            OptimumEmbedding.create_and_save_optimum_model(
-                # "BAAI/bge-small-en-v1.5", "./bge_onnx"
-                "BAAI/bge-m3", "./bge_m3_onnx"
-            )
+        # if not os.path.exists("./bge_m3_onnx"):
+        #     OptimumEmbedding.create_and_save_optimum_model(
+        #         # "BAAI/bge-small-en-v1.5", "./bge_onnx"
+        #         "BAAI/bge-m3", "./bge_m3_onnx"
+        #     )
 
-        self.embed_model = OptimumEmbedding(folder_name="./bge_m3_onnx")
+        # self.embed_model = OptimumEmbedding(folder_name="./bge_m3_onnx")
+        self.embed_model = FastEmbedEmbedding(model_name="BAAI/bge-large-en-v1.5")
+
         
 
     def ensure_collection_exists(self, collection_name):
